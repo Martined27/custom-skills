@@ -1,6 +1,6 @@
 # Custom Claude Code & Agent Skills
 
-A collection of custom [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) skills built for **application security testing (DAST triage & authenticated pentesting)** and **end-to-end QA test automation (Cypress)**.
+A collection of custom [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) skills built for **application security testing (DAST triage & authenticated pentesting)**, **end-to-end QA test automation (Cypress)**, and **AI-assisted engineering & Kanban delivery workflows**.
 
 Each skill follows the `SKILL.md` standard (YAML frontmatter + structured operational instructions and reference rubrics) so it can be dropped directly into `~/.claude/skills/` or `.agents/skills/`.
 
@@ -14,6 +14,7 @@ Each skill follows the `SKILL.md` standard (YAML frontmatter + structured operat
 | [`authenticated-endpoint-pentest`](skills/authenticated-endpoint-pentest/SKILL.md) | Security / AppSec | Runs a breadth-first authenticated security sweep across web apps and SPAs: session bootstrap, JS bundle route extraction, IDOR/cross-tenant authz, privilege escalation, injection, CSRF, mass-assignment, and gate-only (`id:0`) mutation probing. |
 | [`recording-to-cypress`](skills/recording-to-cypress/SKILL.md) | QA Automation | Converts noisy Chrome DevTools Recorder JSON exports into clean, idiomatic Cypress end-to-end specs — stripping recorder noise, enforcing `[data-testid]` selector hierarchy, reusing Page Objects, scrubbing credentials, and asserting functional outcomes. |
 | [`cypress-comment-style`](skills/cypress-comment-style/SKILL.md) | QA Automation | Enforces high-signal code and comment hygiene across Cypress specs and Page Objects — outcome-driven `it()` titles, zero step narration, and DOM/selector gotchas documented once on the Page Object. |
+| [`agentic-kanban-workflow`](skills/agentic-kanban-workflow/SKILL.md) | Engineering Workflow | Orchestrates a 5-stage GitHub Projects Kanban workflow (`Backlog` → `Review` → `In Progress` → `In Review` → `Done`) with Flash PO triage, role-scoped subagents, Lead Architect PR diff auditing, conditional adversarial security/QA reviews, and quota-resilient `docs/` session handoffs. |
 
 ---
 
@@ -36,8 +37,15 @@ custom-skills/
     │       └── roe-and-safety.md
     ├── recording-to-cypress/
     │   └── SKILL.md
-    └── cypress-comment-style/
-        └── SKILL.md
+    ├── cypress-comment-style/
+    │   └── SKILL.md
+    └── agentic-kanban-workflow/
+        ├── SKILL.md
+        └── references/
+            ├── kanban-workflow-rule.template.md
+            ├── issue-and-pr-templates.md
+            ├── project-docs-templates.md
+            └── gh-cli-playbook.md
 ```
 
 ---
@@ -54,9 +62,10 @@ ln -sfn ~/custom-skills/skills/pentest-validator ~/.claude/skills/pentest-valida
 ln -sfn ~/custom-skills/skills/authenticated-endpoint-pentest ~/.claude/skills/authenticated-endpoint-pentest
 ln -sfn ~/custom-skills/skills/recording-to-cypress ~/.claude/skills/recording-to-cypress
 ln -sfn ~/custom-skills/skills/cypress-comment-style ~/.claude/skills/cypress-comment-style
+ln -sfn ~/custom-skills/skills/agentic-kanban-workflow ~/.claude/skills/agentic-kanban-workflow
 ```
 
-Then invoke any skill in Claude Code by name (e.g., `/pentest-validator`, `/authenticated-endpoint-pentest`, `/recording-to-cypress`).
+Then invoke any skill in Claude Code by name (e.g., `/pentest-validator`, `/authenticated-endpoint-pentest`, `/recording-to-cypress`, `/agentic-kanban-workflow`).
 
 ---
 
